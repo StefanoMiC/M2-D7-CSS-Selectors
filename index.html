@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+    <title>M2-D7 CSS Selectors!</title>
+
+    <style>
+      label[class|="btn"] {
+        display: inline-block;
+        font-weight: 400;
+        color: #212529;
+        text-align: center;
+        vertical-align: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-color: transparent;
+        border: 1px solid transparent;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+          border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      }
+
+      .box {
+        width: 150px;
+        height: 150px;
+        background-color: #bdc7d0;
+        margin-bottom: 2px;
+      }
+
+      #first.row > .col > div {
+        width: 50px;
+        height: 50px;
+        background-color: #bdc7d0;
+      }
+
+      #first div.box {
+        background-color: purple;
+        color: white;
+      }
+
+      #second .btn-secondary.active,
+      #second .btn-secondary:active {
+        background-color: blue;
+        border-color: lightblue;
+      }
+
+      #third .box > p {
+        color: blue;
+      }
+
+      #fourth .divIWant + p {
+        background-color: burlywood;
+      }
+
+      #fifth p ~ ul:not(.avoid) {
+        background-color: coral;
+      }
+
+      #sixth input[aria-describedby="basic-addon2"] {
+        background-color: black;
+      }
+      #sixth textarea[aria-label="With textarea"] {
+        border: 2px solid green;
+      }
+
+      #sixth input[type="checkbox"]:checked {
+        margin-left: 2rem;
+      }
+
+      #sixth input[placeholder^="strive" i] {
+        border: 3px solid red;
+      }
+
+      #sixth input[placeholder|="strive" i] {
+        border: 6px solid green;
+      }
+
+      #seventh a[href^="http://"]
+      {
+        color: red;
+      }
+
+      #seventh a[href$=".svg"]::after {
+        content: "<< vector";
+      }
+
+      #eigth > div {
+        background-color: #343a40;
+      }
+
+      #eigth > div:nth-of-type(3) {
+        background-color: red;
+      }
+
+      .board.bingo div.cell {
+        border: 1px solid red;
+      }
+
+      #ninth {
+        position: relative;
+        z-index: 0;
+      }
+      #ninth .box {
+        position: relative;
+      }
+
+      #ninth .box::before {
+        content: "“";
+        position: absolute;
+        top: -20px;
+        right: 0;
+        bottom: 0;
+        left: -20px;
+        background-color: green;
+        width: 50px;
+        height: 50px;
+        z-index: -1;
+      }
+      #ninth .box::after {
+        content: "“";
+        position: absolute;
+        top: 20px;
+        right: 0;
+        bottom: 0;
+        left: 20px;
+        background-color: red;
+        width: 50px;
+        height: 50px;
+        z-index: 1;
+      }
+
+      #tenth {
+        height: 30vh;
+        background-image: url(1-2.jpg);
+        background-size: cover;
+        background-position: 20% 100%;
+        background-repeat: no-repeat;
+        position: relative;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+      }
+
+      #tenth > p {
+        position: relative;
+        z-index: 9;
+        color: white;
+        font-size: 1.4rem;
+        font-weight: 600;
+      }
+
+      #tenth::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.5);
+        background: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 1) 0%,
+          rgba(0, 0, 0, 0) 100%
+        );
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="font-weight-bolder mt-5 mb-4">CSS Selectors</h1>
+      <div class="row mb-5">
+        <div class="col-8">
+          <div class="container">
+            <div
+              id="first"
+              class="myContainer row row-cols-4 py-4 border rounded bg-light"
+            >
+              <div class="col">
+                <div>1</div>
+              </div>
+              <div class="col">
+                <div>2</div>
+              </div>
+              <div class="col"><div>3</div></div>
+              <div class="col"><div>4</div></div>
+              <div class="col"><div>5</div></div>
+              <div class="col"><div>6</div></div>
+              <div class="col"><div class="divThatIWant">7</div></div>
+              <div class="col"><div>8</div></div>
+              <div class="col"><div>9</div></div>
+              <div class="col"><div>10</div></div>
+              <div class="col"><div>11</div></div>
+              <div class="col"><div>12</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <h5>#1 Let's create boxes for each number</h5>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-8">
+          <div class="container">
+            <div id="second" class="row py-4 border rounded bg-light">
+              <div class="col">
+                <div class="row justify-content-center no-gutters">
+                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn-secondary active">
+                      <input type="radio" name="options" id="option1" checked />
+                      Active
+                    </label>
+                    <label class="btn-secondary">
+                      <input type="radio" name="options" id="option2" /> Radio
+                    </label>
+                    <label class="btn-secondary">
+                      <input type="radio" name="options" id="option3" /> Radio
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <h5>#2 Target the active state and change its color</h5>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-8">
+          <div class="container">
+            <div
+              id="third"
+              class="row justify-content-center py-4 border rounded bg-light"
+            >
+              <div class="col">
+                <div class="box mx-auto">
+                  div
+                  <p class="mt-3 mx-3 text-center bg-white">paragraph</p>
+                  <span class="text-danger">span</span>
+                  <p class="mt-3 mx-3 text-center bg-white">paragraph</p>
+                </div>
+                <div class="box mx-auto">
+                  div
+                  <p class="mt-3 mx-3 text-center bg-white">paragraph</p>
+
+                  <ul>
+                    <li>list-element</li>
+                    <li>
+                      <p class="mt-3 mr-3 text-center bg-white">paragraph</p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="box mx-auto">
+                  div
+                  <p class="mt-2 mx-3 text-center bg-white">
+                    paragraph <span class="text-danger">span</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <h5>
+            #3 Let's select only the paragraphs that are immediate children of
+            their parent divs
+          </h5>
+        </div>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-8">
+          <div class="container">
+            <div id="fourth" class="row py-4 border rounded bg-light">
+              <div class="col">
+                <h1>title</h1>
+
+                <div class="divIWant bg-white pb-3">
+                  div
+                  <h2 class="text-center">title2</h2>
+                  <p class="text-center">paragraph</p>
+                </div>
+
+                <p>paragraph</p>
+
+                <p>paragraph</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <h5>#4 Select the p adjacent to the div</h5>
+        </div>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-8">
+          <div class="container">
+            <div id="fifth" class="row py-4 border rounded bg-light">
+              <div class="col">
+                <div class="bg-white border pl-3 py-2" style="width: 100%">
+                  div
+                </div>
+                <ul>
+                  <li>item 1</li>
+                  <li>item 2</li>
+                  <li>item 3</li>
+                </ul>
+
+                <p>paragraph</p>
+                <ul>
+                  <li>item 1</li>
+                  <li>item 2</li>
+                  <li>item 3</li>
+                </ul>
+
+                <h2>title</h2>
+
+                <ul class="avoid">
+                  <li>item 1</li>
+                  <li>item 2</li>
+                  <li>item 3</li>
+                </ul>
+                <h2>title</h2>
+                <ul>
+                  <li>item 1</li>
+                  <li>item 2</li>
+                  <li>item 3</li>
+                </ul>
+                <h2>title</h2>
+                <ul>
+                  <li>item 1</li>
+                  <li>item 2</li>
+                  <li>item 3</li>
+                </ul>
+
+                <span>span</span>
+                <ul>
+                  <li>item 1</li>
+                  <li>item 2</li>
+                  <li>item 3</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <h5>
+            #5 Select only the two lists after a p tag and add a
+            background-color
+          </h5>
+        </div>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-8">
+          <div class="container">
+            <div id="sixth" class="row py-4 border rounded bg-light">
+              <div class="col">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Username"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+
+                <div class="input-group mb-3">
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Recipient's username"
+                    aria-label="Recipient's username"
+                    aria-describedby="basic-addon2"
+                  />
+                  <div class="input-group-append">
+                    <span class="input-group-text" id="basic-addon2"
+                      >@example.com</span
+                    >
+                  </div>
+                </div>
+
+                <label for="basic-url">Your vanity URL</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3"
+                      >https://example.com/users/</span
+                    >
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                  />
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    aria-label="Amount (to the nearest dollar)"
+                    lang="en"
+                  />
+                  <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                  </div>
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">With textarea</span>
+                  </div>
+                  <textarea
+                    class="form-control"
+                    aria-label="With textarea"
+                  ></textarea>
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input
+                        type="checkbox"
+                        aria-label="Checkbox for following text input"
+                        checked
+                      />
+                    </div>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    aria-label="Text input with checkbox"
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input
+                        type="checkbox"
+                        aria-label="Checkbox for following text input"
+                      />
+                    </div>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    aria-label="Text input with checkbox"
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Strive-School"
+                    aria-label="Text input with checkbox"
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="School of Rock"
+                    aria-label="Text input with checkbox"
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Strive for Greatness"
+                    aria-label="Text input with checkbox"
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Strive School Rocks"
+                    aria-label="Text input with checkbox"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <h5>#6 Target inputs by their attributes type</h5>
+        </div>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-8">
+          <div class="container">
+            <div id="seventh" class="row py-4 border rounded bg-light">
+              <div class="col">
+                <a href="https://google.it">Google</a>
+              </div>
+              <div class="col">
+                <a href="1-2.svg">Image</a>
+              </div>
+              <div class="col">
+                <a href="1-2.jpg">Image</a>
+              </div>
+              <div class="col">
+                <a href="https://www.strive.school/">Strive website</a>
+              </div>
+              <div class="col">
+                <a href="http://www.website.it/">Unsecure website</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <h5>
+            #7 Select the links with an href that references a secure website
+            and make them green
+          </h5>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-8">
+          <div class="container">
+            <div
+              id="eigth"
+              class="row row-cols-6 py-4 border rounded bg-light px-3"
+              style="height: 200px"
+            >
+              <h3>Title</h3>
+              <div class="col text-white mb-1 border text-center">1</div>
+              <div class="col text-white mb-1 border text-center">2</div>
+              <div class="col text-white mb-1 border text-center">3</div>
+              <div class="col text-white mb-1 border text-center">4</div>
+              <div class="col text-white mb-1 border text-center">5</div>
+              <div class="col text-white mb-1 border text-center">6</div>
+              <div class="col text-white mb-1 border text-center">7</div>
+              <div class="col text-white mb-1 border text-center">8</div>
+              <div class="col text-white mb-1 border text-center">9</div>
+              <div class="col text-white mb-1 border text-center">10</div>
+              <div class="col text-white mb-1 border text-center">11</div>
+              <div class="col text-white mb-1 border text-center">12</div>
+              <p>last</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <h5>#8 Select divs by number and change colors</h5>
+        </div>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-8">
+          <div class="container">
+            <div id="ninth" class="row row-cols-4 py-4 border rounded bg-light">
+              <div class="col">
+                <div class="box">CONTENT</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <h5>#9 Create pseudo elements from this box</h5>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-8">
+          <div class="container">
+            <div id="tenth" class="border rounded bg-light">
+              <p>The Terror</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <h5>
+            #10 Create pseudo elements as a dark gradient overlay for the image
+          </h5>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
